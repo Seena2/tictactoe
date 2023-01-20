@@ -1,0 +1,195 @@
+/* reseting styling*/
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #F2c14e;
+    --grayblue: #2d414b;
+    --box-size: 120px;
+    /*set the marker size to be 90% of cell size*/
+    --marker-size: calc(var(--box-size)* .9);
+}
+
+body {
+    margin: 0;
+    color: var(--orange);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    margin: 5px;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.container {
+    background-color: #37505c;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formPlayers {
+    width: 50%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.formBtn {
+    grid-column: 1/3;
+    justify-self: center;
+    background-color: #0dc916;
+    margin: 1rem;
+    padding: .3rem;
+}
+
+
+
+#gameboard {
+    width: 80vw;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    /* align the board itself to center*/
+    justify-content: center;
+    align-content: center;
+    /* align items inside this containing div to center*/
+    justify-items: center;
+    align-items: center;
+
+}
+
+.box {
+    width: var(--box-size);
+    height: var(--box-size);
+    color: var(--orange);
+    border: 2px solid var(--orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* remove exterior borders of the grid*/
+.box:first-child,
+.box:nth-child(2),
+.box:nth-child(3) {
+    border-top: none;
+}
+
+.box:nth-child(3n+1) {
+    border-left: none;
+}
+
+.box:nth-child(3n+3) {
+    border-right: none;
+}
+
+.box:last-child,
+.box:nth-child(7),
+.box:nth-child(8) {
+    border-bottom: none;
+}
+.box.x::before,
+.box.x::after,
+.box.circle::before{
+    background-color: var(--orange);
+}
+/*Create the 'X' Mark*/
+/* Or we can create our own markers which is independet of font*/
+.box.x::before,
+.box.x::after,
+/*apply hover eveft when the box is empty(not have '.x' or '.circle'class*/
+.gameboard.x .box:not(.x):not(.circle):hover::before,
+.gameboard.x .box:not(.x):not(.circle):hover::after{
+    content: '';
+    position: absolute;
+    width: calc(var(--marker-size)*.08);
+    height: var(--marker-size);
+}
+
+/*to create 'X' we need to rotate one of the l above at some angle*/
+.box.x::before,
+.gameboard.x .box:not(.x):not(.circle):hover::before{
+    transform: rotate(45deg);
+}
+
+/*rotate the other on opposite direction*/
+.box.x::after,
+.gameboard.x .box:not(.x):not(.circle):hover::after{
+    transform: rotate(-45deg);
+}
+
+/*create the 'O' Mark */
+.box.circle::before,
+.box.circle::after,
+.gameboard.circle .box:not(.x):not(.circle):hover::before,
+.gameboard.circle .box:not(.x):not(.circle):hover::after{
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+}
+.box.circle::before,
+.gameboard.circle .box:not(.x):not(.circle):hover::before{
+    width: var(--marker-size);
+    height: var(--marker-size);
+    background-color: var(--orange);
+}
+.box.circle::after,
+.gameboard.circle .box:not(.x):not(.circle):hover::after{
+    width: calc(var(--marker-size)*.7);
+    height: calc(var(--marker-size)*.7);
+    background-color: var(--grayblue);
+}
+/* if the box is already marked change the curser to inactive*/
+.box.x,
+.box.circle{
+    cursor: not-allowed;
+}
+
+/* Make the hover effect light color until get clicked */
+
+.gameboard.x .box:not(.x):not(.circle):hover::before,
+.gameboard.x .box:not(.x):not(.circle):hover::after,
+.gameboard.circle .box:not(.x):not(.circle):hover::before{
+background-color: #ccccc7;
+}
+/* styling the winning message and restart button*/
+.winning_message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 4rem;
+  /*since we don't want this to show by default*/
+  display: none;
+}
+.winning_message button{
+    font-size: 2rem;
+    border: 1px solid black;
+    border-radius: .5rem;
+    padding: .25rem .5rem;
+    cursor: pointer;
+}
+.winning_message button:hover{
+background-color:#000;
+color: var(--orange);
+}
+
+.winning_message.show{
+    display: flex;
+}
