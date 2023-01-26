@@ -27,16 +27,16 @@ h1 {
 
 .container {
     background-color: #37505c;
-    padding: 4rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#formPlayers {
-    width: 50%;
-    text-align: center;
+.formPlayers {
+    width: 100%;
+    justify-content: center;
     display: grid;
     grid-template-columns: repeat(2, auto);
 }
@@ -48,7 +48,6 @@ h1 {
     margin: 1rem;
     padding: .3rem;
 }
-
 
 
 #gameboard {

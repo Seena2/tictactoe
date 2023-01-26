@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe game</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./script/main.js" defer></script>
+    <script src="/script/main.js" defer></script>
 </head>
 
 <body>
     <div class="container">
         <h1>TIC TAC TOE GAME</h1>
 
-        <form id="formPlayers" action="" method="post">
+        <form id="formPlayers" class="formPlayers" action="" method="post">
             <div class="formDiv">
                 <Label for="player1">Player 1 Name:</Label>
                 <input type="text" id="player1" name="player1">
@@ -24,25 +24,25 @@
                 <input type="text" id="player2" name="player2">
 
             </div>
-            <button type="submit" class="formBtn">Add Players</button>
+            <button class="formBtn">Add Players</button>
         </form>
 
 
         <div id="gameboard" class="gameboard">
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
-            <div class="box" data-box></div>
+            <div class="box" id="0" data-box></div>
+            <div class="box" id="1" data-box></div>
+            <div class="box" id="2" data-box></div>
+            <div class="box" id="3" data-box></div>
+            <div class="box" id="4" data-box></div>
+            <div class="box" id="5" data-box></div>
+            <div class="box" id="6" data-box></div>
+            <div class="box" id="7" data-box></div>
+            <div class="box" id="8" data-box></div>
 
         </div>
         <div class="winning_message" id="winningMsg">
             <div data-winning-message-text>X Wins!!</div>
-            <button type="button" id="restartBtn" >Restart</button>
+            <button type="button" id="restartBtn">Restart</button>
         </div>
 
     </div>
